@@ -11,6 +11,7 @@ Future additions:
 3. add visualizations to automatically show up after function is run
     3a. plotly?
     3b. interactive?
+4. do the Readme write up
 '''
 
 import pandas as pd
