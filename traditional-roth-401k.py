@@ -2,7 +2,7 @@
 Last updated 2020-12-28
 Edits:
 1. added the manual inputs
-2. clean up functions to just use self rather than multiple arguements
+2. cleaned up functions to just use self rather than multiple arguements
 
 Future additions:
 1. add a line for how much people will have at the end
@@ -16,7 +16,7 @@ Future additions:
 import pandas as pd
 import numpy as np
 
-class profit():
+class Profit():
     def __init__(self, age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000):
         self.age = age
         self.retirement_age = retirement_age
@@ -145,13 +145,13 @@ def user_input():
 
 def run_m():
     age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary = user_input()
-    mod = profit(age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary)
+    mod = Profit(age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary)
     df = mod.howdy_401k()
 
     return df
 
 
 # use this to run the model in your notebook or terminal with the following values as default
-# mod = profit(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
+# mod = Profit(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
 # df = mod.howdy_401k()
 # df
