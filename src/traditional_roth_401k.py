@@ -52,6 +52,11 @@ class Profit():
         if diff > bracket_list[5]:
             traditional_contribution = 0
             roth_contribution = self.annual_contribution
+            tax_up = tax_list[6]
+            tax_low = tax_list[5]
+            print('Your tax bracket is: {}%'.format(tax_up))
+            print('Contribute ${} to your traditional 401k'.format(traditional_contribution))
+            print('You should contribute {} to your roth 401k at your current tax rate of {}%'.format(roth_contribution, tax_up))
         else:
             for i in range(4, 0, -1):
                 if bracket_list[i] < diff <= bracket_list[i+1]:
@@ -84,13 +89,14 @@ class Profit():
 
     def brokerage_list(self, years, tax_up, tax_low):
         roth = self.base_salary*tax_up - self.annual_contribution
-        traditional = (self.base_salary-self.annual_contribution)*tax_low  
-        difference = traditional - roth
+        traditional = (self.base_salary-self.annual_contribution)*tax_low
+        difference = int(traditional - roth)
         
         annual_trad_list =[difference]
         for i in range(years):
             res = difference + annual_trad_list[i] * self.percent_return_non_401k
             annual_trad_list.append(int(res))
+        print('Monthly brokerage contribution: ${}'.format(round(difference/12,2)))
         return annual_trad_list
 
 
@@ -141,6 +147,7 @@ def user_input():
     percent_return = float(input('Average annual return for your 401k: '))
     percent_return_non_401k = float(input('Annual return for brokerage: '))
     base_salary = int(input('Base Salary: '))
+    print('-------------------------------------------------------------------------------------')
 
     return age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary
 
@@ -154,5 +161,6 @@ def run_m():
 
 # use this to run the model in your notebook or terminal with the following values as default
 # mod = Profit(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
-# df = mod.howdy_401k()
-# df
+mod = Profit(base_salary=520000)
+df = mod.howdy_401k()
+df
