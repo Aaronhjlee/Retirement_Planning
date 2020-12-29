@@ -59,8 +59,8 @@ class profit():
         trad = round(traditional_contribution / 24, 2)
         roth = round(roth_contribution / 24, 2)
         print('-------------------------------------------------------------------------------------')
-        print('Bimonthly traditional 401k contribution: {}'.format(trad))
-        print('Bimonthly roth 401k contribution: {}'.format(roth))
+        print('Bimonthly traditional 401k contribution: ${}'.format(trad))
+        print('Bimonthly roth 401k contribution: ${}'.format(roth))
 
         return (1-tax_up), (1-tax_low)
         
@@ -89,8 +89,9 @@ class profit():
     --------------------------------------------------------------------------------------------------
     '''
 
-    def howdy_401k(self, age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary):
-        print('Your base salary is {}'.format(base_salary))
+    # def howdy_401k(self, age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary):
+    def howdy_401k(self, age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000):
+        print('Your base salary is ${}'.format(base_salary))
         years = retirement_age-age
         
         # make the table
@@ -117,6 +118,25 @@ class profit():
         
         return df
 
-mod = profit()
-df = mod.howdy_401k(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
-df
+def user_input():
+    age = int(input('Current age: '))
+    retirement_age = int(input('Retirment age: '))
+    annual_contribution = int(input('Contribution to your 401k: '))
+    percent_return = float(input('Average annual return for your 401k: '))
+    percent_return_non_401k = float(input('Annual return for brokerage: '))
+    base_salary = int(input('Base Salary: '))
+
+    return age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary
+
+def run_m():
+    mod = profit()
+    age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary = user_input()
+    df = mod.howdy_401k(age, retirement_age, annual_contribution, percent_return, percent_return_non_401k, base_salary)
+
+    return df
+
+
+# use this to run the model in your notebook or terminal
+# mod = profit()
+# df = mod.howdy_401k(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
+# df
