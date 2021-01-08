@@ -18,7 +18,7 @@ import pandas as pd
 import numpy as np
 
 class Profit():
-    def __init__(self, age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000):
+    def __init__(self, age=30, retirement_age=65, annual_contribution=19500, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000):
         self.age = age
         self.retirement_age = retirement_age
         self.annual_contribution = annual_contribution
@@ -161,6 +161,9 @@ def run_m():
 
 # use this to run the model in your notebook or terminal with the following values as default
 # mod = Profit(age=30, retirement_age=65, annual_contribution=19000, percent_return=1.075, percent_return_non_401k=1.08, base_salary=100000)
-mod = Profit(base_salary=520000)
+mod = Profit(base_salary=100000)
 df = mod.howdy_401k()
 df
+
+roth = 67000
+traditional = 71280
